@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Input Faskes</title>
+</head>
+<body>
+    <h2>Form Input Data Faskes</h2>
+    <form action="input.php" onsubmit="return validateForm(event)" method="post">
+        <label for="jenis">Jenis Faskes:</label><br>
+        <input type="text" id="jenis" name="jenis" placeholder="Contoh: Rumah Sakit / Puskesmas / Klinik" required><br><br>
+
+        <label for="nama_faskes">Nama Faskes:</label><br>
+        <input type="text" id="nama_faskes" name="nama faskes" required><br><br>
+
+        <label for="longitude">Longitude:</label><br>
+        <input type="text" id="long" name="longitude" required><br><br>
+
+        <label for="latitude">Latitude:</label><br>
+        <input type="text" id="lat" name="latitude" required><br><br>
+
+        <label for="jumlah_dokter_umum">Jumlah Dokter Umum:</label><br>
+        <input type="number" id="jml_umum" name="jumlah dokter umum" value="0" min="0" required><br><br>
+
+        <label for="jumlah_dokter_spesialis">Jumlah Dokter Spesialis:</label><br>
+        <input type="number" id="jml_spesialis" name="jumlah dokter spesialis" value="0" min="0" required><br><br>
+
+        <label for="jumlah_dokter_gigi">Jumlah Dokter Gigi:</label><br>
+        <input type="number" id="jml_gigi" name="jumlah dokter gigi" value="0" min="0" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    
+    <p id="informasi" style="color:rgb(234, 194, 194);"></p>
+
+    <script>
+    function validateForm(event) {
+        let long = document.getElementById("long").value;
+        let lat = document.getElementById("lat").value;
+        let text = "";
+        
+        // Memastikan koordinat longitude dan latitude berupa angka
+        if (isNaN(long) || isNaN(lat) || long === "" || lat === "") {
+            text = "Data Longitude dan Latitude harus berupa angka valid!";
+            event.preventDefault(); // Mencegah form dikirim
+            document.getElementById("informasi").innerHTML = text;
+            return false;
+        }
+        return true;
+    }
+    </script>
+</body>
+</html>
